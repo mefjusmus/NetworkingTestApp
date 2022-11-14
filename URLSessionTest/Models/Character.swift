@@ -36,15 +36,6 @@ struct Character {
            """
     }
     
-    init(name: String, imageURL: String, films: [String], shortFilms: [String], tvShows: [String], videoGames: [String]) {
-        self.name = name
-        self.imageURL = imageURL
-        self.films = films
-        self.shortFilms = shortFilms
-        self.tvShows = tvShows
-        self.videoGames = videoGames
-    }
-    
     init(characterData: [String : Any]) {
         name = characterData["name"] as? String ?? ""
         imageURL = characterData["imageUrl"] as? String ?? ""

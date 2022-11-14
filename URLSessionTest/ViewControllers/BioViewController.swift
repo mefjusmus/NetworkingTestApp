@@ -10,9 +10,12 @@ import UIKit
 class BioViewController: UIViewController {
 
     @IBOutlet var characterImage: UIImageView!
-    @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var filmsLabel: UILabel!
+    @IBOutlet var shortFilmsLabel: UILabel!
+    @IBOutlet var tvShowsLabel: UILabel!
+    @IBOutlet var videoGamesLabel: UILabel!
     
     
     var character: Character!
@@ -20,8 +23,7 @@ class BioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setImage()
-        nameLabel.text = character.name
-        descriptionLabel.text = character.description
+        setupLabels()
     }
     
     
@@ -32,7 +34,13 @@ class BioViewController: UIViewController {
         characterImage.layer.cornerRadius = characterImage.bounds.height / 2
     }
     
-    
+    private func setupLabels() {
+        nameLabel.text = character.name
+        filmsLabel.text = character.films.isEmpty ? "None" : character.films.joined()
+        shortFilmsLabel.text = character.shortFilms.isEmpty ? "None" : character.shortFilms.joined()
+        tvShowsLabel.text = character.tvShows.isEmpty ? "None" : character.tvShows.joined()
+        videoGamesLabel.text = character.videoGames.isEmpty ? "None" : character.videoGames.joined()
+    }
     
     
     private func setImage() {
