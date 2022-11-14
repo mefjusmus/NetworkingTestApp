@@ -8,13 +8,13 @@
 import Foundation
 
 struct CharactersData {
-    let characters: [[String: Any]]
+    let data: [[String: Any]]
     
     init(charactersData: [String : Any]) {
-        self.characters = charactersData["data"] as? [[String: Any]] ?? []
+        self.data = charactersData["data"] as? [[String: Any]] ?? []
     }
     
-    static func getCharacters(from value: [String: Any]) -> CharactersData {
+    static func getData(from value: [String: Any]) -> CharactersData {
         CharactersData(charactersData: value)
     }
 }
@@ -55,7 +55,7 @@ struct Character {
     }
     
     
-    static func getCharacter(from charactersData: [[String: Any]]) -> [Character] {
+    static func getCharacters(from charactersData: [[String: Any]]) -> [Character] {
         var characters: [Character] = []
         charactersData.forEach { character in
             characters.append(Character(characterData: character))

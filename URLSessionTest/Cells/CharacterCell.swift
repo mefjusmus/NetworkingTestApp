@@ -22,14 +22,15 @@ class CharacterCell: UITableViewCell {
     func configure(with character: Character) {
         characterName.text = character.name
         
-//        NetworkManager.shared.fetchImage(from: character.imageURL) { [weak self] result in
-//            switch result {
-//            case .success(let imageData):
-//                self?.characterImage.image = UIImage(data: imageData)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
+        NetworkManager.shared.fetchData(from: character.imageURL) { [weak self] result in
+            switch result {
+            case .success(let imageData):
+                self?.characterImage.image = UIImage(data: imageData)
+            case .failure(let error):
+                self?.characterImage.image = UIImage(systemName: "person") ?? UIImage()
+                print(error)
+            }
+        }
     }
     
 }

@@ -19,7 +19,7 @@ class BioViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setImage()
+        setImage()
         nameLabel.text = character.name
         descriptionLabel.text = character.description
     }
@@ -35,16 +35,17 @@ class BioViewController: UIViewController {
     
     
     
-//    private func setImage() {
-//        NetworkManager.shared.fetchImage(from: character.imageURL) { [weak self] result in
-//            switch result {
-//            case .success(let imageData):
-//                self?.characterImage.image = UIImage(data: imageData)
-//                self?.activityIndicator.stopAnimating()
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
+    private func setImage() {
+        NetworkManager.shared.fetchData(from: character.imageURL) { [weak self] result in
+            switch result {
+            case .success(let imageData):
+                self?.activityIndicator.stopAnimating()
+                self?.characterImage.image = UIImage(data: imageData)
+            case .failure(let error):
+                self?.characterImage.image = UIImage(systemName: "person") ?? UIImage()
+                print(error)
+            }
+        }
+    }
 
 }
