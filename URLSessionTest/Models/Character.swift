@@ -27,15 +27,6 @@ struct Character {
     let tvShows: [String]
     let videoGames: [String]
     
-    var description: String {
-           """
-           Films: \(films.joined(separator: ", "))
-           ShortFilms: \(shortFilms.joined(separator: ", "))
-           TVShows: \(tvShows.joined(separator: ", "))
-           VideoGames: \(videoGames.joined(separator: ", "))
-           """
-    }
-    
     init(characterData: [String : Any]) {
         name = characterData["name"] as? String ?? ""
         imageURL = characterData["imageUrl"] as? String ?? ""
