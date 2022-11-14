@@ -7,9 +7,13 @@
 
 import UIKit
 
-class CharactersListViewController: UITableViewController {
+class CharactersViewController: UITableViewController {
     
-    private var characters: [Character] = []
+    private var characters: [Character] = [] {
+        didSet {
+            print(characters)
+        }
+    }
     private var activityIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
@@ -44,14 +48,14 @@ class CharactersListViewController: UITableViewController {
     }
     
     private func fetchCharacters() {
-        NetworkManager.shared.fetch(Characters.self, from: Link.disneyCharactersURL.rawValue) { [weak self] result in
+        NetworkManager.shared.fetchCharacters(from: Link.disneyCharactersURL.rawValue) { [weak self] result in
             switch result {
             case .success(let characters):
-                self?.characters = characters.characters
-                self?.activityIndicator.stopAnimating()
+                self?.characters = characters
                 self?.tableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
+                self?.activityIndicator.stopAnimating()
+            case .failure(let failure):
+                print(failure.localizedDescription)
             }
         }
     }

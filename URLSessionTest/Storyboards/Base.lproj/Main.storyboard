@@ -11,7 +11,7 @@
         <!--Disney Characters-->
         <scene sceneID="BbM-nv-9BZ">
             <objects>
-                <tableViewController id="R6r-33-BgX" customClass="CharactersListViewController" customModule="URLSessionTest" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="R6r-33-BgX" customClass="CharactersViewController" customModule="URLSessionTest" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ba5-o1-TPC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -143,7 +143,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJ6-SR-db1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-300" y="-416.90140845070425"/>
+            <point key="canvasLocation" x="-210" y="-417"/>
         </scene>
     </scenes>
     <resources>

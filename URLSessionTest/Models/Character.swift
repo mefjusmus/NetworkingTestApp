@@ -7,33 +7,62 @@
 
 import Foundation
 
-struct Characters: Decodable {
-    let characters: [Character]
+struct CharactersData {
+    let characters: [[String: Any]]
     
-    enum CodingKeys: String, CodingKey {
-        case characters = "data"
+    init(charactersData: [String : Any]) {
+        self.characters = charactersData["data"] as? [[String: Any]] ?? []
+    }
+    
+    static func getCharacters(from value: [String: Any]) -> CharactersData {
+        CharactersData(charactersData: value)
     }
 }
 
-struct Character: Decodable {
-    let films, shortFilms, tvShows, videoGames: [String]
+struct Character {
     let name: String
     let imageURL: String
+    let films: [String]
+    let shortFilms: [String]
+    let tvShows: [String]
+    let videoGames: [String]
     
     var description: String {
-        """
-        Films: \(films.joined(separator: ", "))
-        ShortFilms: \(shortFilms.joined(separator: ", "))
-        TVShows: \(tvShows.joined(separator: ", "))
-        VideoGames: \(videoGames.joined(separator: ", "))
-        """
+           """
+           Films: \(films.joined(separator: ", "))
+           ShortFilms: \(shortFilms.joined(separator: ", "))
+           TVShows: \(tvShows.joined(separator: ", "))
+           VideoGames: \(videoGames.joined(separator: ", "))
+           """
     }
     
-    enum CodingKeys: String, CodingKey {
-        case films, shortFilms, tvShows, videoGames
-        case name = "name"
-        case imageURL = "imageUrl"
+    init(name: String, imageURL: String, films: [String], shortFilms: [String], tvShows: [String], videoGames: [String]) {
+        self.name = name
+        self.imageURL = imageURL
+        self.films = films
+        self.shortFilms = shortFilms
+        self.tvShows = tvShows
+        self.videoGames = videoGames
+    }
+    
+    init(characterData: [String : Any]) {
+        name = characterData["name"] as? String ?? ""
+        imageURL = characterData["imageUrl"] as? String ?? ""
+        films = characterData["films"] as? [String] ?? []
+        shortFilms = characterData["shortFilms"] as? [String] ?? []
+        tvShows = characterData["tvShows"] as? [String] ?? []
+        videoGames = characterData["videoGames"] as? [String] ?? []
+    }
+    
+    
+    static func getCharacter(from charactersData: [[String: Any]]) -> [Character] {
+        var characters: [Character] = []
+        charactersData.forEach { character in
+            characters.append(Character(characterData: character))
+        }
+        return characters
     }
 }
+
 
 
