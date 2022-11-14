@@ -9,11 +9,7 @@ import UIKit
 
 class CharactersViewController: UITableViewController {
     
-    private var characters: [Character] = [] {
-        didSet {
-            print(characters)
-        }
-    }
+    private var characters: [Character] = []
     private var activityIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
