@@ -7,18 +7,6 @@
 
 import Foundation
 
-struct CharactersData {
-    let data: [[String: Any]]
-    
-    init(charactersData: [String : Any]) {
-        self.data = charactersData["data"] as? [[String: Any]] ?? []
-    }
-    
-    static func getData(from value: [String: Any]) -> CharactersData {
-        CharactersData(charactersData: value)
-    }
-}
-
 struct Character {
     let name: String
     let imageURL: String
@@ -37,10 +25,13 @@ struct Character {
     }
     
     
-    static func getCharacters(from charactersData: [[String: Any]]) -> [Character] {
+    static func getCharacters(from charactersData: Any) -> [Character] {
+        guard let charactersData = charactersData as? [String: Any] else { return [] }
+        let data = charactersData["data"] as? [[String: Any]] ?? []
         var characters: [Character] = []
-        charactersData.forEach { character in
-            characters.append(Character(characterData: character))
+        data.forEach {
+            let character = Character(characterData: $0)
+            characters.append(character)
         }
         return characters
     }

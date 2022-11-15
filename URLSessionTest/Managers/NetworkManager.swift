@@ -24,9 +24,7 @@ class NetworkManager {
             .responseJSON { dataResponse in
                 switch dataResponse.result {
                 case .success(let value):
-                    guard let value = value as? [String: Any] else { return }
-                    let charactersData = CharactersData.getData(from: value)
-                    let characters = Character.getCharacters(from: charactersData.data)
+                    let characters = Character.getCharacters(from: value)
                     completion(.success(characters))
                 case .failure(let error):
                     completion(.failure(error))
